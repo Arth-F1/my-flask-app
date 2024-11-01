@@ -65,7 +65,6 @@ requests-futures==1.0.1
 requests-toolbelt==0.9.1
 selenium==3.141.0
 setuptools==70.1.0
-sherlock-project @ file:///D:/sherlock
 simplejson==3.19.2
 six==1.16.0
 soupsieve==2.5
