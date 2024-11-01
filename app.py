@@ -6,9 +6,9 @@ app.secret_key = "your_secret_key"
 
 # MySQL Configuration
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Arth@F1",
+    host="database-1.cdyosa6weglp.ap-south-1.rds.amazonaws.com",
+    user="admin",
+    password="ArthForm123",
     database="mail_system"
 )
 
