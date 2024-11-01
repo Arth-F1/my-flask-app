@@ -1,0 +1,46 @@
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+/* Base styling */
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.card {
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+}
+body.dark-mode .navbar {
+    background-color: #333;
+}
+
+.login-form {
+    width: 300px;
+    margin: 50px auto;
+}
+h2 {
+    color: #333;
+}

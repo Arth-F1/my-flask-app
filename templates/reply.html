@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm p-4">
+    <h4>Reply to: {{ email[1] }}</h4>
+    <form action="{{ url_for('reply', email_id=email[0]) }}" method="POST">
+        <div class="form-group">
+            <textarea name="content" class="form-control" rows="6" placeholder="Write your reply here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Reply</button>
+    </form>
+</div>
+{% endblock %}
