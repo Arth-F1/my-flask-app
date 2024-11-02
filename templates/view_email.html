@@ -6,45 +6,6 @@
     <title>Email View</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            margin-bottom: 20px;
-        }
-        .email-content {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            max-width: 600px;
-            margin: auto;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .email-header img {
-            width: 100px;
-            margin-bottom: 20px;
-        }
-        .email-body {
-            font-size: 16px;
-            color: #333;
-        }
-        .btn-primary {
-            background-color: #0070ba;
-            border-color: #0070ba;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .btn-secondary, .btn-danger {
-            margin-top: 10px;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -64,36 +25,15 @@
         </div>
     </nav>
    
-    <div class="email-content">
-        <div class="email-header text-center">
-            <!-- PayPal Logo -->
-            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal Logo">
-        </div>
+    <div class="email-content container">
         
-        <h3 class="text-center">Your card is about to expire!!!</h3>
-        <p>From: <strong>{{ email.sender_name }}</strong></p>
-        <p>To: <strong>You</strong></p>
-        
-        <div class="email-body">
-            <p>Dear Mike Smith,</p>
-            <p>We noticed your card is about to expire. Please update your expiration date and card security code (CVV) as soon as possible so you can continue using PayPal. Be sure to activate your new card with the bank first.</p>
-            
-            <!-- Call-to-action button -->
-            <div class="text-center mt-4">
-                <a href="https://www.paypal.com/in/home" class="btn btn-primary">Update your details</a>
-            </div>
-            
-            <p style="margin-top: 20px;">Sincerely,<br>PayPal</p>
-        </div>
-        
-        <!-- Additional Options -->
-        <div class="text-center mt-4">
-            <a href="{{ url_for('reply', email_id=email.id) }}" class="btn btn-primary">Reply</a>
-            <a href="{{ url_for('inbox') }}" class="btn btn-secondary">Back to Inbox</a>
-            <button id="reportSpamBtn" class="btn btn-danger">Report Spam</button>
-        </div>
+        <p>From: {{ email.sender_name }}</p>
+        <p>To: You</p>
+        <div>{{ email.content_html | safe }}</div>
+        <a href="{{ url_for('reply', email_id=email.id) }}" class="btn btn-primary">Reply</a>
+        <a href="{{ url_for('inbox') }}" class="btn btn-secondary">Back to Inbox</a>
+        <button id="reportSpamBtn" class="btn btn-danger mt-0">Report Spam</button>
     </div>
-    
     <script>
         $(document).ready(function() {
             $('#reportSpamBtn').click(function() {
