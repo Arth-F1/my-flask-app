@@ -7,7 +7,7 @@ app.secret_key = "your_secret_key"
 
 # MySQL Configuration
 # MySQL Configuration using PyMySQL
-db = pymysql.connect(
+db = mysql.connector.connect(
     host="database-1.cdyosa6weglp.ap-south-1.rds.amazonaws.com",
     user="admin",
     password="ArthForm123",
