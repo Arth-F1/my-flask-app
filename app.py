@@ -1,19 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 import pymysql
-
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
 # MySQL Configuration
-# MySQL Configuration using PyMySQL
 db = mysql.connector.connect(
     host="database-1.cdyosa6weglp.ap-south-1.rds.amazonaws.com",
     user="admin",
     password="ArthForm123",
     database="mail_system"
 )
-
 
 # Home Route (Login Page)
 @app.route('/', methods=['GET', 'POST'])
@@ -32,6 +29,9 @@ def login():
 # Inbox Route
 @app.route('/inbox')
 def inbox():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
     user_id = session.get('user_id')
     cursor = db.cursor(dictionary=True)
 
@@ -48,9 +48,13 @@ def inbox():
     cursor.close()
     return render_template('inbox.html', emails=emails)
 
+
 # Email View Route
 @app.route('/view_email/<int:email_id>')
 def view_email(email_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
     cursor = db.cursor(dictionary=True)
 
     # Update read_status to 1 (read)
@@ -68,6 +72,7 @@ def view_email(email_id):
 
     cursor.close()
     return render_template('view_email.html', email=email)
+
 
 
 # Drafts Route
